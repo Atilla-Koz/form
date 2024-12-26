@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useState, useEffect } from 'react';
 import PageTransition from './PageTransition';
+import ThemeToggle from './ThemeToggle';
 
 const successTranslations = {
   tr: {
@@ -59,6 +60,7 @@ const SuccessPage = ({ formData }) => {
   if (!formData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-violet-50 via-sky-50 to-purple-50 dark:from-gray-900 dark:via-violet-950 dark:to-gray-900 flex items-center justify-center p-4">
+        <ThemeToggle />
         <Link
           to="/"
           className="text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors"
@@ -76,6 +78,7 @@ const SuccessPage = ({ formData }) => {
         onTransitionMiddle={handleTransitionMiddle}
         onTransitionEnd={handleTransitionEnd}
       />
+      <ThemeToggle />
       <div className={`min-h-screen bg-gradient-to-br from-violet-50 via-sky-50 to-purple-50 dark:from-gray-900 dark:via-violet-950 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
         <div className="max-w-3xl mx-auto">
           <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg border border-violet-100 dark:border-violet-900 overflow-hidden">
