@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply h-full m-0 p-0;
+  }
+  #root {
+    @apply h-full;
+  }
+}
+
+@keyframes tileAnimation {
+  0% {
+    transform: scale(0) rotate(0deg) translateY(-20px);
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  40% {
+    transform: scale(1.1) rotate(10deg) translateY(0);
+    opacity: 0.5;
+    backdrop-filter: blur(4px);
+  }
+  50% {
+    transform: scale(1) rotate(0deg) translateY(0);
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+  60% {
+    transform: scale(1) rotate(0deg) translateY(0);
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+  100% {
+    transform: scale(0) rotate(0deg) translateY(20px);
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+.page-transition-enter {
+  opacity: 0;
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+/* Toast Stilleri */
+.Toastify__toast {
+  @apply rounded-xl shadow-lg backdrop-blur-sm !important;
+}
+
+.dark .Toastify__toast {
+  @apply bg-gray-800 text-gray-100 !important;
+}
+
+.Toastify__toast-body {
+  @apply font-medium !important;
+}
+
+.dark .Toastify__close-button {
+  @apply text-gray-400 hover:text-gray-200 !important;
+}
+
+.Toastify__progress-bar {
+  @apply bg-violet-500 !important;
+}
+
+.dark .Toastify__progress-bar {
+  @apply bg-violet-400 !important;
+}
+
+/* Başarılı Toast */
+.toast-success {
+  @apply bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 !important;
+}
+
+.toast-success-body {
+  @apply text-green-800 dark:text-green-200 !important;
+}
+
+.toast-success-progress {
+  @apply bg-green-500 dark:bg-green-400 !important;
+}
+
+/* Hata Toast */
+.toast-error {
+  @apply bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 !important;
+}
+
+.toast-error-body {
+  @apply text-rose-800 dark:text-rose-200 !important;
+}
+
+.toast-error-progress {
+  @apply bg-rose-500 dark:bg-rose-400 !important;
+}
