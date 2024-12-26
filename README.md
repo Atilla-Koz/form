@@ -12,39 +12,18 @@ Bu proje, modern ve kullanıcı dostu bir iş başvuru formu uygulamasıdır. Re
 - 🔍 Form doğrulama
 - 📋 Başvuru özeti sayfası
 - 🚀 Toastify bildirimler
+- 💾 LocalStorage ile tercih saklama
+- 🔄 Sayfa yenilemede tercihleri koruma
+- 🎭 Puzzle animasyonlu dil değişimi
+- 🌈 Temaya duyarlı toast bildirimleri
 
 ## Teknolojiler
 
 - React
 - TailwindCSS
 - React Router
-- React Hook Form
 - React Toastify
-- Axios
 - PropTypes
-
-## Kurulum
-
-1. Projeyi klonlayın:
-```bash
-git clone https://github.com/kullaniciadi/form.git
-cd form
-```
-
-2. Bağımlılıkları yükleyin:
-```bash
-npm install
-```
-
-3. Geliştirme sunucusunu başlatın:
-```bash
-npm run dev
-```
-
-4. Tarayıcınızda açın:
-```
-http://localhost:5173
-```
 
 ## Kullanım
 
@@ -67,12 +46,18 @@ http://localhost:5173
 ## Özelleştirme
 
 ### Tema Değiştirme
-- Sağ üst köşedeki tema değiştirme butonunu kullanarak karanlık/aydınlık mod arasında geçiş yapabilirsiniz
-- Tema tercihiniz tarayıcınızda saklanır
+- Sağ üst köşedeki tema değiştirme butonu ile karanlık/aydınlık mod arasında geçiş
+- Tema tercihi localStorage'da saklanır
+- Sayfa yenilendiğinde tema korunur
+- Toast bildirimleri temaya uyum sağlar
+- Tüm bileşenler otomatik tema uyumu
 
 ### Dil Değiştirme
-- Sağ üst köşedeki dil değiştirme butonunu kullanarak Türkçe/İngilizce arasında geçiş yapabilirsiniz
-- Dil tercihiniz tarayıcınızda saklanır
+- Sağ üst köşedeki dil değiştirme butonu ile Türkçe/İngilizce geçişi
+- Dil tercihi localStorage'da saklanır
+- Sayfa yenilendiğinde dil korunur
+- Puzzle animasyonlu geçiş efekti
+- Toast bildirimleri seçili dilde gösterilir
 
 ## Geliştirme
 
@@ -81,10 +66,40 @@ http://localhost:5173
 src/
   ├── components/         # React bileşenleri
   ├── context/           # Context API dosyaları
+  ├── hooks/             # Custom hooks
   ├── translations/      # Dil dosyaları
   ├── App.jsx           # Ana uygulama bileşeni
   └── main.jsx          # Giriş noktası
 ```
+
+### Custom Hook'lar
+
+#### useLocalStorage
+```javascript
+const [value, setValue] = useLocalStorage(key, initialValue);
+```
+- Veriyi localStorage'da saklar
+- Sayfa yenilemelerinde veriyi korur
+- JSON parse/stringify işlemlerini otomatik yapar
+- Hata yönetimi içerir
+
+#### useTheme
+```javascript
+const { isDark, toggleTheme } = useTheme();
+```
+- Tema durumunu yönetir
+- LocalStorage ile senkronize çalışır
+- Otomatik DOM class yönetimi
+- Toast bildirimleri entegrasyonu
+
+#### useLanguage
+```javascript
+const { language, toggleLanguage } = useLanguage();
+```
+- Dil durumunu yönetir
+- LocalStorage ile senkronize çalışır
+- Puzzle animasyonu entegrasyonu
+- Toast bildirimleri entegrasyonu
 
 ### Bileşenler
 - `JobApplicationForm`: Ana form bileşeni
@@ -92,6 +107,37 @@ src/
 - `PageTransition`: Sayfa geçiş animasyonları
 - `ThemeToggle`: Tema değiştirme butonu
 - `LanguageToggle`: Dil değiştirme butonu
+
+### LocalStorage Yapısı
+```javascript
+// Tema tercihi
+localStorage.getItem('theme') // 'true' | 'false'
+
+// Dil tercihi
+localStorage.getItem('language') // 'tr' | 'en'
+```
+
+## Kurulum
+
+1. Projeyi klonlayın:
+```bash
+git clone https://github.com/kullaniciadi/form.git
+```
+
+2. Proje dizinine gidin:
+```bash
+cd form
+```
+
+3. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
+
+4. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
 
 ## Katkıda Bulunma
 

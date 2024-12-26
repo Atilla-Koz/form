@@ -1,25 +1,17 @@
-import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import { translations } from '../translations';
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
   const { language } = useLanguage();
   const t = translations[language];
 
-  useEffect(() => {
-    if (document.documentElement.classList.contains('dark')) {
-      setIsDark(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
+  const handleThemeToggle = () => {
+    toggleTheme();
     
-    if (newTheme) {
-      document.documentElement.classList.add('dark');
+    if (!isDark) {
       toast.info(t.toast.darkMode, {
         position: "bottom-right",
         autoClose: 2000,
@@ -31,7 +23,6 @@ const ThemeToggle = () => {
         progressClassName: 'bg-violet-400',
       });
     } else {
-      document.documentElement.classList.remove('dark');
       toast.info(t.toast.lightMode, {
         position: "bottom-right",
         autoClose: 2000,
@@ -47,7 +38,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={handleThemeToggle}
       className="fixed top-4 right-4 z-50 p-2 rounded-xl bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm border border-violet-100 dark:border-violet-900 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
       aria-label={isDark ? 'Açık Temaya Geç' : 'Koyu Temaya Geç'}
     >

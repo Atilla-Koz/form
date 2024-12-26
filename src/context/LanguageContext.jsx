@@ -1,13 +1,14 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('tr');
+  const [language, setLanguage] = useLocalStorage('language', 'tr');
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'tr' ? 'en' : 'tr');
+    setLanguage(prevLang => prevLang === 'tr' ? 'en' : 'tr');
   };
 
   return (
